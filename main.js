@@ -8,7 +8,7 @@ fetchNotes = () => {
 
   if (searchNotes === 'empty'){
     notesList.innerHTML += '<div> Search has returned no results </div>'
-  } else if (notes.length === 0){
+  } else if (notes === null || notes.length === 0){
     notesList.innerHTML += '<div> No content found</div>'
   } else {
     let renderedNotes
@@ -34,17 +34,24 @@ fetchNotes = () => {
 saveNote = (e) => {
   const title = document.getElementById('titleInput').value
   const description = document.getElementById('descriptionInput').value
+  const allNotes = JSON.parse(localStorage.getItem('notes'))
 
+  console.log(allNotes)
   let uniqueId
   let findId
   let i = 0
-  while (true){
-    findId = JSON.parse(localStorage.getItem('notes')).find(note => { return note.id === i })
-    if (!findId){
-      uniqueId = i
-      break
+
+  if (allNotes === null){
+    uniqueId = 0
+  } else {
+    while (true){
+      findId = JSON.parse(localStorage.getItem('notes')).find(note => { return note.id === i })
+      if (!findId){
+        uniqueId = i
+        break
+      }
+      i++
     }
-    i++
   }
 
   const note = {
@@ -59,6 +66,7 @@ saveNote = (e) => {
   localStorage.setItem('notes', JSON.stringify(notes))
   localStorage.setItem('searchNotes', JSON.stringify([]))
 
+  console.log(notes)
   document.getElementById('noteInputForm').reset();
 
   fetchNotes()
