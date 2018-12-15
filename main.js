@@ -36,7 +36,6 @@ saveNote = (e) => {
   const description = document.getElementById('descriptionInput').value
   const allNotes = JSON.parse(localStorage.getItem('notes'))
 
-  console.log(allNotes)
   let uniqueId
   let findId
   let i = 0
@@ -66,7 +65,6 @@ saveNote = (e) => {
   localStorage.setItem('notes', JSON.stringify(notes))
   localStorage.setItem('searchNotes', JSON.stringify([]))
 
-  console.log(notes)
   document.getElementById('noteInputForm').reset();
 
   fetchNotes()
@@ -76,7 +74,6 @@ saveNote = (e) => {
 editNote = (id) => {
   const allNotes = JSON.parse(localStorage.getItem('notes'));
   const modalContent = document.getElementById('modalContent');
-
   const note = allNotes.find(note => {
     return note.id === id
   })
@@ -108,7 +105,7 @@ saveEditNote = (id) => {
     alert('Title and content not filled, please ensure that at least one field is filled for update');
   } else {
     for (let i=0; i < notes.length; i++){
-      if (id === i){
+      if (id === notes[i].id){
         if (editTitle !== ""){ notes[i].title = editTitle }
         if (editDesc !== ""){ notes[i].description = editDesc }
 
