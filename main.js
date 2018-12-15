@@ -13,6 +13,7 @@ fetchNotes = () => {
     searchNotes.length !==0 ? renderedNotes = searchNotes : renderedNotes = notes
   
     for (let i=0; i < renderedNotes.length; i++){
+      let id = renderedNotes[i].id
       let title = renderedNotes[i].title
       let desc = renderedNotes[i].description
 
@@ -20,8 +21,8 @@ fetchNotes = () => {
                                 '<h5>' + title + '</h5>' +
                                 '<div>' + desc + '</div>' +
                                 '<div>' + 
-                                    '<a href="#openModal"><button onclick="editNote('+ i +')">Edit</button></a>' + 
-                                    '<button onclick="deleteNote('+ i +')"> Delete </button>' +
+                                    '<a href="#openModal"><button onclick="editNote('+ id +')">Edit</button></a>' + 
+                                    '<button onclick="deleteNote('+ id +')"> Delete </button>' +
                                 '</div>'
                               '</div>'
     }
@@ -31,7 +32,10 @@ fetchNotes = () => {
 saveNote = (e) => {
   const title = document.getElementById('titleInput').value
   const description = document.getElementById('descriptionInput').value
+  const id = JSON.parse(localStorage.getItem('notes')).length
+
   const note = {
+    id: id,
     title: title,
     description: description
   }   
@@ -41,7 +45,6 @@ saveNote = (e) => {
   notes.push(note)
   localStorage.setItem('notes', JSON.stringify(notes))
   localStorage.setItem('searchNotes', JSON.stringify([]))
-
 
   document.getElementById('noteInputForm').reset();
   fetchNotes()
@@ -87,6 +90,7 @@ saveEditNote = (id) => {
   }
 
   document.getElementById('noteEditForm').reset();
+  localStorage.setItem('searchNotes', JSON.stringify([]))
   fetchNotes();
 }
 
@@ -94,19 +98,19 @@ deleteNote = (id) => {
   let notes = JSON.parse(localStorage.getItem('notes'));
 
   for (let i=0; i < notes.length; i++){
-    if (i === id){
+    if (notes[i].id === id){
       notes.splice(i, 1);
     }
   }
 
   localStorage.setItem('notes', JSON.stringify(notes));
+  localStorage.setItem('searchNotes', JSON.stringify([]))
   fetchNotes();
 }
 
 searchTitles = () => {
   let notes = JSON.parse(localStorage.getItem('notes'));
   let searchTitles = document.getElementById("search").value
-
   let finder = notes.filter(find => {
     return find.title.includes(searchTitles)
   })
