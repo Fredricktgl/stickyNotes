@@ -13,10 +13,9 @@ fetchNotes = () => {
   } else {
     let renderedNotes
     searchNotes.length !==0 ? renderedNotes = searchNotes : renderedNotes = notes
-  
+
     for (let i=0; i < renderedNotes.length; i++){
       let id = renderedNotes[i].id
-      console.log(id)
       let title = renderedNotes[i].title
       let desc = renderedNotes[i].description
 
@@ -35,10 +34,21 @@ fetchNotes = () => {
 saveNote = (e) => {
   const title = document.getElementById('titleInput').value
   const description = document.getElementById('descriptionInput').value
-  const id = JSON.parse(localStorage.getItem('notes')).length
+
+  let uniqueId
+  let findId
+  let i = 0
+  while (true){
+    findId = JSON.parse(localStorage.getItem('notes')).find(note => { return note.id === i })
+    if (!findId){
+      uniqueId = i
+      break
+    }
+    i++
+  }
 
   const note = {
-    id: id,
+    id: uniqueId,
     title: title,
     description: description
   }   
@@ -76,25 +86,27 @@ editNote = (id) => {
                               '<div class="col-10 col-s-10"><input type="text" id="editDescriptionInput" placeholder="'+note.description+'"></div>' +
                             '</div>' +
                             '<div class="row">' +
-                              '<div class="col-12 col-s-12"><button class="newButton"><a href="#close" onclick="saveEditNote('+ id +')">Edit content</a></button></div>' +
+                              '<div class="col-12 col-s-12"><a class="editButton" onclick="saveEditNote('+ note.id +')">Edit content</a></div>' +
                             '</div>'
                           '</form>'
 }
 
 saveEditNote = (id) => {
-  // console.log(id)
   const notes = JSON.parse(localStorage.getItem('notes'));
   const editTitle = document.getElementById('editTitleInput').value
   const editDesc = document.getElementById('editDescriptionInput').value
-
+  
   if (editTitle === "" && editDesc === ""){
-    console.log('prompt user to fill in 1 field')
+    alert('Title and content not filled, please ensure that at least one field is filled for update');
   } else {
-
     for (let i=0; i < notes.length; i++){
       if (id === i){
         if (editTitle !== ""){ notes[i].title = editTitle }
         if (editDesc !== ""){ notes[i].description = editDesc }
+
+        alert('Content successfully updated!')
+        window.location = "#close"
+        break
       }
     }
 
