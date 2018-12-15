@@ -25,9 +25,7 @@ fetchNotes = () => {
                                 '</div>'
                               '</div>'
     }
-  }
-
-  
+  }  
 }
 
 saveNote = (e) => {
