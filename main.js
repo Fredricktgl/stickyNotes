@@ -59,17 +59,20 @@ editNote = (id) => {
   const modalContent = document.getElementById('modalContent');
 
   modalContent.innerHTML ='<form id="noteEditForm">' +
-                            '<div>' +
-                              '<label>Title: </label>' +
-                              '<input type="text" id="editTitleInput" placeholder="'+notes[id].title+'">' +
+                            '<div class="row">' +
+                              '<div class="col-12 label"><h3>You are currently editing an existing content</h3></div>' +
                             '</div>' +
-
-                            '<div>' +
-                              '<label>Description: </label>' +
-                              '<input type="text" id="editDescriptionInput" placeholder="'+notes[id].description+'">' +
+                            '<div class="row">' +
+                              '<div class="col-1 label"><label>Title:</label></div>' +
+                              '<div class="col-11"><input type="text" id="editTitleInput" placeholder="'+notes[id].title+'"></div>' +
                             '</div>' +
-
-                            '<button><a href="#close" onclick="saveEditNote('+ id +')">Edit</a></button>'
+                            '<div class="row">' +
+                              '<div class="col-1 label"><label>Content:</label></div>' +
+                              '<div class="col-11"><input type="text" id="editDescriptionInput" placeholder="'+notes[id].description+'"></div>' +
+                            '</div>' +
+                            '<div class="row">' +
+                              '<div class="col-12"><button class="newButton"><a href="#close" onclick="saveEditNote('+ id +')">Edit content</a></button></div>' +
+                            '</div>'
                           '</form>'
 }
 
