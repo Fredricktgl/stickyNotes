@@ -16,6 +16,7 @@ fetchNotes = () => {
   
     for (let i=0; i < renderedNotes.length; i++){
       let id = renderedNotes[i].id
+      console.log(id)
       let title = renderedNotes[i].title
       let desc = renderedNotes[i].description
 
@@ -55,28 +56,33 @@ saveNote = (e) => {
 }
 
 editNote = (id) => {
-  const notes = JSON.parse(localStorage.getItem('notes'));
+  const allNotes = JSON.parse(localStorage.getItem('notes'));
   const modalContent = document.getElementById('modalContent');
+
+  const note = allNotes.find(note => {
+    return note.id === id
+  })
 
   modalContent.innerHTML ='<form id="noteEditForm">' +
                             '<div class="row">' +
-                              '<div class="col-12 label"><h3>You are currently editing an existing content</h3></div>' +
+                              '<div class="col-12 col-s-12 label"><h3>Currently editing a content</h3></div>' +
                             '</div>' +
                             '<div class="row">' +
-                              '<div class="col-1 label"><label>Title:</label></div>' +
-                              '<div class="col-11"><input type="text" id="editTitleInput" placeholder="'+notes[id].title+'"></div>' +
+                              '<div class="col-2 col-s-2 label"><label>Title</label></div>' +
+                              '<div class="col-10 col-s-10"><input type="text" id="editTitleInput" placeholder="'+note.title+'"></div>' +
                             '</div>' +
                             '<div class="row">' +
-                              '<div class="col-1 label"><label>Content:</label></div>' +
-                              '<div class="col-11"><input type="text" id="editDescriptionInput" placeholder="'+notes[id].description+'"></div>' +
+                              '<div class="col-2 col-s-2 label"><label>Content</label></div>' +
+                              '<div class="col-10 col-s-10"><input type="text" id="editDescriptionInput" placeholder="'+note.description+'"></div>' +
                             '</div>' +
                             '<div class="row">' +
-                              '<div class="col-12"><button class="newButton"><a href="#close" onclick="saveEditNote('+ id +')">Edit content</a></button></div>' +
+                              '<div class="col-12 col-s-12"><button class="newButton"><a href="#close" onclick="saveEditNote('+ id +')">Edit content</a></button></div>' +
                             '</div>'
                           '</form>'
 }
 
 saveEditNote = (id) => {
+  // console.log(id)
   const notes = JSON.parse(localStorage.getItem('notes'));
   const editTitle = document.getElementById('editTitleInput').value
   const editDesc = document.getElementById('editDescriptionInput').value

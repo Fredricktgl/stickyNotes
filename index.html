@@ -11,10 +11,10 @@
       <h1>My Sticky Notes</h1>
         <div>
           <div class="row">
-            <div class="col-11 col-s-10">
+            <div class="col-11 col-s-11">
               <input id="search" type="text" placeholder="Search by title...">
             </div>
-            <div class="col-1 col-s-2">
+            <div class="col-1 col-s-1">
               <button onclick="searchTitles()">Search</button>
             </div>
           </div>
@@ -22,13 +22,13 @@
           <form id="noteInputForm">
             <h2>Add new note</h2>
             <div class="row">
-              <div class="col-1 col-s-1 label"><b>Title:</b></div>
-              <div class="col-11 col-s-11"><input type="text" id="titleInput" placeholder="Enter title ..."></div>
+              <div class="col-1 col-s-2 label"><b>Title</b></div>
+              <div class="col-11 col-s-10"><input type="text" id="titleInput" placeholder="Enter title ..."></div>
             </div>
 
             <div class="row">
-              <div class="col-1 col-s-1 label"><b>Content:</b></div>
-              <div class="col-11 col-s-11"><input type="text" id="descriptionInput" placeholder="Enter content ..."></div>
+              <div class="col-1 col-s-2 label"><b>Content</b></div>
+              <div class="col-11 col-s-10"><input type="text" id="descriptionInput" placeholder="Enter content ..."></div>
             </div>
 
             <div class="row">
@@ -90,6 +90,19 @@
     .col-s-10 {width: 83.33%;}
     .col-s-11 {width: 91.66%;}
     .col-s-12 {width: 100%;}
+
+    .modalDialog > div {
+      width: 90%;
+      /* min-width: 500px; */
+      position: relative;
+      margin: 10% auto;
+      padding: 5px 10px;
+      border-radius: 10px;
+      background: #fff;
+      background: -moz-linear-gradient(#fff, #999);
+      background: -webkit-linear-gradient(#fff, #999);
+      background: -o-linear-gradient(#fff, #999);
+    }
   }
 
   @media only screen and (min-width: 700px) {
@@ -116,19 +129,16 @@
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
 
-    button {
-      padding-top: 5px;
-      padding-bottom: 5px;
-      border: 2px solid #ccc;
-      border-radius: 5px;
-      width: 70px;
-    }
-
-    .label {
-      display:flex;
-      justify-content: center;
-      margin-top: 5px;
-      font-weight: bold;
+    .modalDialog > div {
+      width: 60%;
+      position: relative;
+      margin: 10% auto;
+      padding: 10px 10px;
+      border-radius: 10px;
+      background: #fff;
+      background: -moz-linear-gradient(#fff, #999);
+      background: -webkit-linear-gradient(#fff, #999);
+      background: -o-linear-gradient(#fff, #999);
     }
   }
 
@@ -154,6 +164,21 @@
     -webkit-border-radius: 5px;
     border-radius: 5px;
     width: 99%;
+  }
+
+  button {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    width: 70px;
+  }
+
+  .label {
+    display:flex;
+    justify-content: center;
+    margin-top: 5px;
+    font-weight: bold;
   }
 
   .content {
@@ -206,18 +231,6 @@
   .modalDialog:target {
     opacity:1;
     pointer-events: auto;
-  }
-
-  .modalDialog > div {
-    width: 70%;
-    position: relative;
-    margin: 10% auto;
-    padding: 10px 20px 13px 20px;
-    border-radius: 10px;
-    background: #fff;
-    background: -moz-linear-gradient(#fff, #999);
-    background: -webkit-linear-gradient(#fff, #999);
-    background: -o-linear-gradient(#fff, #999);
   }
 
   .close {
