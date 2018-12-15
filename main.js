@@ -8,6 +8,8 @@ fetchNotes = () => {
 
   if (searchNotes === 'empty'){
     notesList.innerHTML += '<div> Search has returned no results </div>'
+  } else if (notes.length === 0){
+    notesList.innerHTML += '<div> No content found</div>'
   } else {
     let renderedNotes
     searchNotes.length !==0 ? renderedNotes = searchNotes : renderedNotes = notes
@@ -18,11 +20,11 @@ fetchNotes = () => {
       let desc = renderedNotes[i].description
 
       notesList.innerHTML += '<div>' + 
-                                '<h5>' + title + '</h5>' +
-                                '<div>' + desc + '</div>' +
-                                '<div>' + 
-                                    '<a href="#openModal"><button onclick="editNote('+ id +')">Edit</button></a>' + 
-                                    '<button onclick="deleteNote('+ id +')"> Delete </button>' +
+                                '<h3>' + title + '</h3>' +
+                                '<div class="content-desc">' + desc + '</div>' +
+                                '<div class="content-btn-row">' + 
+                                    '<a href="#openModal"><button class="content-btn-edit" onclick="editNote('+ id +')">Edit</button></a>' + 
+                                    '<button class="content-btn-del" onclick="deleteNote('+ id +')"> Delete </button>' +
                                 '</div>'
                               '</div>'
     }
@@ -47,6 +49,7 @@ saveNote = (e) => {
   localStorage.setItem('searchNotes', JSON.stringify([]))
 
   document.getElementById('noteInputForm').reset();
+
   fetchNotes()
   e.preventDefault();
 }

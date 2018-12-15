@@ -11,31 +11,33 @@
       <h1>My Sticky Notes</h1>
         <div>
           <div class="row">
-            <div class="col-11">
+            <div class="col-11 col-s-10">
               <input id="search" type="text" placeholder="Search by title...">
             </div>
-            <div class="col-1">
+            <div class="col-1 col-s-2">
               <button onclick="searchTitles()">Search</button>
             </div>
           </div>
 
           <form id="noteInputForm">
-            <h3>Add new note</h3>
-            <div>
-              <label>Title</label>
-              <input type="text" id="titleInput" placeholder="Enter title ...">
+            <h2>Add new note</h2>
+            <div class="row">
+              <div class="col-1 col-s-1 label"><b>Title:</b></div>
+              <div class="col-11 col-s-11"><input type="text" id="titleInput" placeholder="Enter title ..."></div>
             </div>
 
-            <div>
-              <label>Description</label>
-              <input type="text" id="descriptionInput" placeholder="Enter description ...">
+            <div class="row">
+              <div class="col-1 col-s-1 label"><b>Content:</b></div>
+              <div class="col-11 col-s-11"><input type="text" id="descriptionInput" placeholder="Enter content ..."></div>
             </div>
 
-            <button type="submit">Add</button>
+            <div class="row">
+              <div class="col-12 col-s-12"><button type="submit" class="newButton">Add new content</button></div>
+            </div>
           </form>
         </div>
 
-        <div>
+        <div class="content">
           <div id="notesList" />
         </div>
 
@@ -56,23 +58,12 @@
     box-sizing: border-box;
   }
 
-  .col-1 {width: 8.33%;}
-  .col-2 {width: 16.66%;}
-  .col-3 {width: 25%;}
-  .col-4 {width: 33.33%;}
-  .col-5 {width: 41.66%;}
-  .col-6 {width: 50%;}
-  .col-7 {width: 58.33%;}
-  .col-8 {width: 66.66%;}
-  .col-9 {width: 75%;}
-  .col-10 {width: 83.33%;}
-  .col-11 {width: 91.66%;}
-  .col-12 {width: 100%;}
-
   [class*="col-"] {
     float: left;
-    padding: 15px;
-    border: 1px solid red;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: center;
   }
 
   .row::after {
@@ -81,12 +72,114 @@
     display: table;
   }
 
-  h1 {
+  @media only screen and (max-width: 700px) {
+    body {
+      background-color: lightblue;
+      min-width: 400px;
+    }
+
+    .col-s-1 {width: 8.33%;}
+    .col-s-2 {width: 16.66%;}
+    .col-s-3 {width: 25%;}
+    .col-s-4 {width: 33.33%;}
+    .col-s-5 {width: 41.66%;}
+    .col-s-6 {width: 50%;}
+    .col-s-7 {width: 58.33%;}
+    .col-s-8 {width: 66.66%;}
+    .col-s-9 {width: 75%;}
+    .col-s-10 {width: 83.33%;}
+    .col-s-11 {width: 91.66%;}
+    .col-s-12 {width: 100%;}
+  }
+
+  @media only screen and (min-width: 700px) {
+    html {
+      display: flex;
+      justify-content: center;
+    }
+
+    body {
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+
+    button {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      width: 70px;
+    }
+
+    .label {
+      display:flex;
+      justify-content: center;
+      margin-top: 5px;
+    }
+  }
+
+  h1, h2 {
     margin: 0;
+    padding-top: 5px;
     display: flex;
     justify-content: center;
   }
 
+  h3 {
+    margin: 0;
+  }
+
+  input {
+    padding:5px; 
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 99%;
+  }
+
+  .content {
+    background-color: aliceblue;
+    margin: 5px 0 5px 0;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .content-desc {
+    overflow-wrap: break-word;
+  }
+
+  .content-btn-row {
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+
+  .content-btn-edit {
+    margin-right: 5px
+  }
+
+  .content-btn-del {
+    background-color: #F88379;
+  }
+
+  .newButton {
+    width: 200px;
+    background-color: aquamarine;
+    height: 30px;
+    font-weight: bold;
+  }
 
   .modalDialog {
     position: fixed;
