@@ -18,7 +18,7 @@
 
 @media only screen and (max-width: 700px) {
   body {
-    min-width: 400px;
+    min-width: 320px;
   }
 
   .col-s-1 {width: 8.33%;}
@@ -72,7 +72,7 @@
   .col-12 {width: 100%;}
 
   .modalDialog > div {
-    width: 60%;
+    width: 65%;
     position: relative;
     margin: 10% auto;
     padding: 10px 10px;
@@ -114,6 +114,11 @@ button {
   border: 2px solid #ccc;
   border-radius: 5px;
   width: 70px;
+}
+
+.searchBtn {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .label {

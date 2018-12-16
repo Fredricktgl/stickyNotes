@@ -83,12 +83,12 @@ editNote = (id) => {
                               '<div class="col-12 col-s-12 label"><h3>Currently editing a content</h3></div>' +
                             '</div>' +
                             '<div class="row">' +
-                              '<div class="col-2 col-s-2 label"><label>Title</label></div>' +
-                              '<div class="col-10 col-s-10"><input type="text" id="editTitleInput" placeholder="'+note.title+'"></div>' +
+                              '<div class="col-2 col-s-3 label"><label>Title</label></div>' +
+                              '<div class="col-10 col-s-9"><input type="text" id="editTitleInput" placeholder="'+note.title+'"></div>' +
                             '</div>' +
                             '<div class="row">' +
-                              '<div class="col-2 col-s-2 label"><label>Content</label></div>' +
-                              '<div class="col-10 col-s-10"><input type="text" id="editDescriptionInput" placeholder="'+note.description+'"></div>' +
+                              '<div class="col-2 col-s-3 label"><label>Content</label></div>' +
+                              '<div class="col-10 col-s-9"><input type="text" id="editDescriptionInput" placeholder="'+note.description+'"></div>' +
                             '</div>' +
                             '<div class="row">' +
                               '<div class="col-12 col-s-12"><a class="editButton" onclick="saveEditNote('+ note.id +')">Edit content</a></div>' +
